@@ -1,0 +1,7 @@
+{
+  "id": "message-check",
+  "name": "Message-Check",
+  "version": "\${version}",
+  "authors": ["AngelHell"],
+  "main": "com.messagecheck.velocity.MessageCheckVelocityPlugin"
+}
