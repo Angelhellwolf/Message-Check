@@ -1,0 +1,19 @@
+name: Message-Check
+main: com.messagecheck.bukkit.MessageCheckBukkitPlugin
+version: \${version}
+load: POSTWORLD
+author: AngelHell
+description: Moderates chat and commands with async GPT-backed filters.
+commands:
+  messagecheck:
+    description: Reload the Message-Check configuration.
+    usage: /<command> reload
+    permission: messagecheck.admin
+permissions:
+  messagecheck.bypass:
+    description: Allows sending messages without moderation.
+    default: false
+  messagecheck.admin:
+    description: Allows reloading the plugin configuration.
+    default: op
+folia-supported: true
