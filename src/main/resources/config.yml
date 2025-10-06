@@ -1,0 +1,74 @@
+# Message-Check configuration
+settings:
+  enabled: true
+  bypass-permission: "messagecheck.bypass"
+  region: "global" # set to "china" or "cn" to use the xxapi.cn moderation API automatically
+  async-threads: 4
+  check-commands:
+    - /me
+    - /msg
+    - /tell
+    - /w
+    - /whisper
+    - /r
+    - /reply
+    - /hh
+  blocked-prefixes:
+    - //
+  notify-staff-permission: "messagecheck.notify"
+  staff-notify-format: "&c[Message-Check] &7Blocked message from &e%player%&7: &f%message%"
+
+spam-control:
+  max-messages: 8
+  interval-seconds: 180
+  similarity-threshold: 0.92
+  action: "block"
+
+filters:
+  banned-words:
+    - "外挂"
+    - "作弊器"
+    - "恐怖"
+    - "反共"
+    - "恐怖主义"
+    - "child porn"
+    - "porn"
+  banned-patterns:
+    - "(?i)discord\.gg/"
+    - "(?i)buy\s+cheats"
+  sanitize-colors: true
+  strip-urls: false
+
+openai:
+  enabled: false
+  base-url: "https://api.openai.com/v1/chat/completions"
+  api-key: ""
+  model: "gpt-3.5-turbo"
+  request-timeout-millis: 4500
+  cache-minutes: 1440
+  prompt-template: |
+    你是一个游戏服务器的聊天审查员。判断以下内容是否安全、是否涉及违规、诈骗、恐怖、反动、色情、辱骂、未成年有害内容或广告。只返回"ALLOW"或"BLOCK"，必要时返回"FLAG"。
+    消息: %s
+
+cache:
+  maximum-size: 10000
+  expire-after-minutes: 720
+
+storage:
+  sql:
+    enabled: false
+    jdbc-url: "jdbc:mysql://localhost:3306/message_check"
+    username: "root"
+    password: "password"
+    maximum-pool-size: 8
+  redis:
+    enabled: false
+    host: "localhost"
+    port: 6379
+    password: ""
+    database: 0
+    ssl: false
+
+logging:
+  level: "INFO"
+  debug: false
