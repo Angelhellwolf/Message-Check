@@ -79,7 +79,8 @@ tasks.shadowJar {
     relocateDependency("okhttp3")
     relocateDependency("okio")
     relocateDependency("com.github.benmanes.caffeine")
-    minimize()
+    // Avoid calling minimize(); the plugin entry classes are discovered via
+    // descriptor metadata and would be stripped from the shaded jar.
 }
 
 tasks.build {
